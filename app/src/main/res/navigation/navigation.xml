@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/startScreen">
+
+    <fragment
+        android:id="@+id/startScreen"
+        android:name="com.karoliinamultas.parliamentmembersproject.StartScreen"
+        android:label="StartScreen" >
+        <action
+            android:id="@+id/action_startScreen_to_partiesFragment"
+            app:destination="@id/partiesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/partiesFragment"
+        android:name="com.karoliinamultas.parliamentmembersproject.PartiesFragment"
+        android:label="fragment_parties"
+        tools:layout="@layout/fragment_parties" >
+        <action
+            android:id="@+id/action_partiesFragment_to_membersOfPartyFragment"
+            app:destination="@id/membersOfPartyFragment"
+            app:popUpTo="@id/partiesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/membersOfPartyFragment"
+        android:name="com.karoliinamultas.parliamentmembersproject.MembersOfPartyFragment"
+        android:label="fragment_members_of_party"
+        tools:layout="@layout/fragment_members_of_party" />
+</navigation>

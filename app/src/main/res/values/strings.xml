@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ParliamentMembersProject</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="members_of_the_parliament">Members of parliament</string>
+</resources>
