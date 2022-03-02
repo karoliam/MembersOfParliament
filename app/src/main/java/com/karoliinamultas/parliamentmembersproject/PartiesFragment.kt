@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.karoliinamultas.parliamentmembersproject.ParliamentMembersData.members
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianViewModel
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentPartiesBinding
-import com.karoliinamultas.parliamentmembersproject.databinding.FragmentStartScreenBinding
+
 
 class PartiesFragment : Fragment() {
     private lateinit var mPoliticianViewModel: PoliticianViewModel

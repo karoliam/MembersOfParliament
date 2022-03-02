@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.karoliinamultas.parliamentmembersproject.MemberOfParliament
 
-@Database(entities = [MemberOfParliament::class], version = 1, exportSchema = false)
+
+@Database(entities = [Politician::class], version = 2, exportSchema = false)
 abstract class PoliticianDB: RoomDatabase() {
 
     abstract fun politicianDao(): PoliticianDao
@@ -25,7 +25,7 @@ abstract class PoliticianDB: RoomDatabase() {
                     context.applicationContext,
                     PoliticianDB::class.java,
                     "politician_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }
