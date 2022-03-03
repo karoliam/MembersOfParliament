@@ -7,34 +7,29 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianViewModel
-import com.karoliinamultas.parliamentmembersproject.databinding.FragmentMembersOfPartyBinding
+import com.karoliinamultas.parliamentmembersproject.databinding.FragmentMemberPageBinding
 
-
-class MembersOfPartyFragment : Fragment() {
+class MemberPage : Fragment() {
     private lateinit var mPoliticianViewModel: PoliticianViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentMembersOfPartyBinding>(
+        val binding = DataBindingUtil.inflate<FragmentMemberPageBinding>(
             inflater,
-            R.layout.fragment_members_of_party, container, false
+            R.layout.fragment_member_page, container, false
         )
         mPoliticianViewModel = ViewModelProvider(this).get(PoliticianViewModel::class.java)
-        val adapter = MemberRecyclerViewAdapter()
 
-        binding.membersList.adapter = adapter
-        binding.membersList.layoutManager = LinearLayoutManager(requireContext())
-        mPoliticianViewModel.politicians.observe(this) {
-            adapter.data = it
+        val name = mPoliticianViewModel.politicians.value?.map { it.first }
+        var i = 0
+        if (name != null) {
+            while(i < name.size)
+                i++
         }
-
-        binding.membersList.apply {
-            adapter.data
-        }
+        binding.nameText.text = name?.get(i)
 
         return binding.root
     }

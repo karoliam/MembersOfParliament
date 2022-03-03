@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.karoliinamultas.parliamentmembersproject.data.Politician
 
 
-class RecyclerViewAdapter() : RecyclerView.Adapter<TextItemViewHolder>() {
+class MPageRecyclerViewAdapter() : RecyclerView.Adapter<TextItemViewHolder>() {
 
     var data = listOf<Politician>()
         set(value) {
@@ -16,10 +16,11 @@ class RecyclerViewAdapter() : RecyclerView.Adapter<TextItemViewHolder>() {
             notifyDataSetChanged()
         }
 
-    var parties = data.map { it.party }.toSet().sorted()
+
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
+            val parties = data.map { it.first + " " + it.last }.toSet().sorted()
             val item = parties[position]
             holder.textView.text = item
 

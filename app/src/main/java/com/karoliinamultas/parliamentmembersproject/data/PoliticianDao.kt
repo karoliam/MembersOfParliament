@@ -13,5 +13,4 @@ interface PoliticianDao {
 
     @Query("SELECT * FROM politician_table ORDER BY personNumber")
     fun readAllData(): LiveData<List<Politician>>
-
 }

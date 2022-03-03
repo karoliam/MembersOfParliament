@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.karoliinamultas.parliamentmembersproject.data.PoliticianViewModel
+import com.karoliinamultas.parliamentmembersproject.data.Politician
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentPartiesBinding
 
 
 class PartiesFragment : Fragment() {
-    private lateinit var mPoliticianViewModel: PoliticianViewModel
+    private lateinit var partyViewModel: PartyViewModel
+    private lateinit var adapter: PartyRecyclerViewAdapter
 
     override fun onCreateView(
 
@@ -24,19 +25,15 @@ class PartiesFragment : Fragment() {
             inflater,
             R.layout.fragment_parties, container, false
         )
-        mPoliticianViewModel = ViewModelProvider(this).get(PoliticianViewModel::class.java)
-        val adapter = RecyclerViewAdapter()
-
-        binding.partyList.adapter = adapter
+        partyViewModel = ViewModelProvider(this).get(PartyViewModel::class.java)
+        adapter = PartyRecyclerViewAdapter(requireContext(), partyViewModel.parties)
         binding.partyList.layoutManager = LinearLayoutManager(requireContext())
-        mPoliticianViewModel.politicians.observe(this) {
-            adapter.data = it
-        }
 
-        binding.partyList.apply {
-            adapter.data
-        }
 
+
+        partyViewModel.parties.observe(this) {
+            adapter.submitList(it)
+        }
 
         return binding.root
 

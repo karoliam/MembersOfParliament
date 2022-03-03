@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Politician::class], version = 2, exportSchema = false)
+@Database(entities = [Politician::class], version = 1, exportSchema = false)
 abstract class PoliticianDB: RoomDatabase() {
 
     abstract fun politicianDao(): PoliticianDao
@@ -25,7 +25,7 @@ abstract class PoliticianDB: RoomDatabase() {
                     context.applicationContext,
                     PoliticianDB::class.java,
                     "politician_database"
-                ).fallbackToDestructiveMigration().build()
+                ).build()
                 INSTANCE = instance
                 return instance
             }

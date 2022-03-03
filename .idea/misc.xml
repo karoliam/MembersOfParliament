@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/activity_main.xml" value="0.26458333333333334" />
+        <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/fragment_member_page.xml" value="0.33695652173913043" />
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/fragment_members_of_party.xml" value="0.1" />
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/fragment_parties.xml" value="0.22" />
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/fragment_start_screen.xml" value="0.22" />
+        <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/member_layout.xml" value="0.33695652173913043" />
+        <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/member_list_layout.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/text_item_view.xml" value="0.26458333333333334" />
       </map>
     </option>

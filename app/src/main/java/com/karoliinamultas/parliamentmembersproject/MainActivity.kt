@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             return navController.navigateUp()
         }
 
-    fun addPoliticians() {
+     fun addPoliticians() {
             GlobalScope.launch(Dispatchers.IO,
                 CoroutineStart.DEFAULT) {
                 try {

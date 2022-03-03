@@ -28,5 +28,19 @@
         android:id="@+id/membersOfPartyFragment"
         android:name="com.karoliinamultas.parliamentmembersproject.MembersOfPartyFragment"
         android:label="fragment_members_of_party"
-        tools:layout="@layout/fragment_members_of_party" />
+        tools:layout="@layout/fragment_members_of_party" >
+        <action
+            android:id="@+id/action_membersOfPartyFragment_to_memberPage"
+            app:destination="@id/memberPage"
+            app:popUpTo="@id/membersOfPartyFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberPage"
+        android:name="com.karoliinamultas.parliamentmembersproject.MemberPage"
+        android:label="MemberPage" >
+        <action
+            android:id="@+id/action_memberPage_to_membersOfPartyFragment"
+            app:destination="@id/membersOfPartyFragment" />
+    </fragment>
 </navigation>
