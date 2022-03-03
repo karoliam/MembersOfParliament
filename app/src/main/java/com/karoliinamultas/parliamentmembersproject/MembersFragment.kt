@@ -28,7 +28,7 @@ class MembersOfPartyFragment : Fragment() {
 
         binding.membersList.adapter = adapter
         binding.membersList.layoutManager = LinearLayoutManager(requireContext())
-        mPoliticianViewModel.politicians.observe(this) {
+        mPoliticianViewModel.politicians.observe(viewLifecycleOwner) {
             adapter.data = it
         }
 

@@ -10,10 +10,11 @@ import com.karoliinamultas.parliamentmembersproject.data.*
 
 class PartyViewModel(application: Application): AndroidViewModel(application) {
     private val repository = PoliticianRepository(PoliticianDB.getDatabase(getApplication()).politicianDao())
-    val parties: LiveData<List<String>> = Transformations.map(repository.readAllData) { extractParties(it) }
+    val parties: LiveData<List<String>> = Transformations.map(repository.readAllData, { extractParties(it)})
+
 
     private fun extractParties(memberList: List<Politician>): List<String> {
-        return memberList.map { it.party }.toSet().sorted().toList()
+        return memberList.map { it.party }.toSortedSet().toList()
     }
 
 

@@ -25,7 +25,7 @@ abstract class PoliticianDB: RoomDatabase() {
                     context.applicationContext,
                     PoliticianDB::class.java,
                     "politician_database"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }

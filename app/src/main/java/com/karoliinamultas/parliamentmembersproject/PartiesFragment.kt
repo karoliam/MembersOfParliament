@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.karoliinamultas.parliamentmembersproject.data.Politician
@@ -27,19 +28,18 @@ class PartiesFragment : Fragment() {
         )
         partyViewModel = ViewModelProvider(this).get(PartyViewModel::class.java)
         adapter = PartyRecyclerViewAdapter(requireContext(), partyViewModel.parties)
-        binding.partyList.layoutManager = LinearLayoutManager(requireContext())
 
-
-
-        partyViewModel.parties.observe(this) {
-            adapter.submitList(it)
-        }
-
+        partyViewModel.parties.observe(viewLifecycleOwner, Observer {
+            (binding.partyList.adapter as PartyRecyclerViewAdapter).notifyDataSetChanged()
+        })
+        binding.partyList.layoutManager = LinearLayoutManager(activity)
+        binding.partyList.adapter =
+            activity?.let {
+                PartyRecyclerViewAdapter(it,
+                partyViewModel.parties)
+            }
         return binding.root
 
     }
-
-
-
     }
 
