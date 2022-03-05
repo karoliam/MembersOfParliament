@@ -1,11 +1,16 @@
 package com.karoliinamultas.parliamentmembersproject.viewModels
 
 import android.app.Application
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.karoliinamultas.parliamentmembersproject.data.Politician
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianDB
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianRepository
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class MemberPageViewModel(application: Application): AndroidViewModel(application) {
     var i = 0
@@ -27,4 +32,6 @@ class MemberPageViewModel(application: Application): AndroidViewModel(applicatio
 
 
     }
+
+
 }

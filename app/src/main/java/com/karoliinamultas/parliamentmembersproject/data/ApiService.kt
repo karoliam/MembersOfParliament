@@ -23,6 +23,7 @@ interface ApiService {
     suspend fun getPoliticianList(): List<Politician>
 }
 
+
 object PoliticianApi {
     val retrofitService : ApiService by lazy {
         retrofit.create(ApiService::class.java) }
