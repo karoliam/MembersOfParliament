@@ -18,7 +18,7 @@ import com.karoliinamultas.parliamentmembersproject.viewModels.MembersViewModel
 class MembersOfPartyFragment : Fragment() {
     private lateinit var memberViewModel: MembersViewModel
     private lateinit var adapter: MemberRecyclerViewAdapter
-    private lateinit var politicianViewModel: PoliticianViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,23 +27,24 @@ class MembersOfPartyFragment : Fragment() {
             inflater,
             R.layout.fragment_members_of_party, container, false
         )
-        memberViewModel = ViewModelProvider(this).get(MembersViewModel::class.java)
-        politicianViewModel = ViewModelProvider(this).get(PoliticianViewModel::class.java)
-
         val args = MembersOfPartyFragmentArgs.fromBundle(requireArguments())
         val partyName = args.partyName
+        memberViewModel = ViewModelProvider(this).get(MembersViewModel::class.java)
+
+
+
         println(partyName)
         println("HELLO HERE")
-        adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.members)
         memberViewModel.members.observe(viewLifecycleOwner, Observer {
-            (binding.membersList.adapter as MemberRecyclerViewAdapter).notifyDataSetChanged()
+        adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.extractParties(it, partyName))
+            binding.membersList.adapter = adapter
         })
         binding.membersList.layoutManager = LinearLayoutManager(activity)
-        binding.membersList.adapter =
-            activity?.let {
-                MemberRecyclerViewAdapter(it,
-                    memberViewModel.members)
-            }
+//        binding.membersList.adapter =
+//            activity?.let {
+//                MemberRecyclerViewAdapter(it,
+//                    memberViewModel.extractParties(it, partyName))
+//            }
 
 
         return binding.root

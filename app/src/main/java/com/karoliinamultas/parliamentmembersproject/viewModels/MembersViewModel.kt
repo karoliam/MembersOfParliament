@@ -8,13 +8,13 @@ import com.karoliinamultas.parliamentmembersproject.data.Politician
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianDB
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianRepository
 
-class MembersViewModel(application: Application): AndroidViewModel(application) @Inject constructor() {
+class MembersViewModel(application: Application): AndroidViewModel(application) {
     private val repository = PoliticianRepository(PoliticianDB.getDatabase(getApplication()).politicianDao())
-    val members: LiveData<List<String>> = Transformations.map(repository.allData, { extractParties(it)})
+    val members: LiveData<List<Politician>> = repository.allData
 
 
-    private fun extractParties(memberList: List<Politician>): List<String> {
-        return memberList.map { it.first + " " + it.last}
+    fun extractParties(memberList: List<Politician>, partyName: String): List<String> {
+        return memberList.filter { it.party == partyName }.map { it.first + " " + it.last }
     }
 
 

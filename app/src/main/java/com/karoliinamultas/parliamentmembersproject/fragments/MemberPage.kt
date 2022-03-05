@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.karoliinamultas.parliamentmembersproject.MembersOfPartyFragmentArgs
 import com.karoliinamultas.parliamentmembersproject.R
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianDB
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentMemberPageBinding
@@ -19,7 +22,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class MemberPage : Fragment() {
-    private lateinit var membersViewModel: MembersViewModel
     private lateinit var commentList: MutableList<String>
     private lateinit var memberPageViewModel: MemberPageViewModel
     override fun onCreateView(
@@ -30,18 +32,31 @@ class MemberPage : Fragment() {
             inflater,
             R.layout.fragment_member_page, container, false
         )
-        membersViewModel = ViewModelProvider(this).get(MembersViewModel::class.java)
+        //ViewModel
         memberPageViewModel = ViewModelProvider(this).get(MemberPageViewModel::class.java)
-        binding.nameText.text = "Fix this later"
-        commentList = mutableListOf()
-        val userInput = binding.userInput.text.toString()
 
+        //Safe args
+        val args = MemberPageArgs.fromBundle(requireArguments())
+        val memberName = args.memberName
 
+        binding.nameText.text = memberName
+        memberPageViewModel.members.observe(viewLifecycleOwner, Observer {
+            binding.infoText.text = memberPageViewModel.extractInfo(it, memberName)
+        })
 
-        binding.thumbUpButton.setOnClickListener{
-            memberPageViewModel.plus()
-            binding.upCountText.text = memberPageViewModel.i.toString()
-        }
+        //Image
+        Glide.with(this).load("https://img.ilcdn.fi/Is0zmu8Tj0Mf5j-3L9-6HvGZsiE=/full-fit-in/612x0/img-s3.ilcdn.fi/9e4131bc225129dc25be6e78bb60f8b357244bb351ac7a74741b629cedf92821.jpg").into(binding.imageView)
+
+//
+//        commentList = mutableListOf()
+//        val userInput = binding.userInput.text.toString()
+//
+//
+//
+//        binding.thumbUpButton.setOnClickListener{
+//            memberPageViewModel.plus()
+//            binding.upCountText.text = memberPageViewModel.i.toString()
+//        }
 
                 //kysy apua
 //        fun addComment() {

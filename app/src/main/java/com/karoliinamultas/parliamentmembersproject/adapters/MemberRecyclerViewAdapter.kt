@@ -14,11 +14,11 @@ import com.karoliinamultas.parliamentmembersproject.MembersOfPartyFragmentDirect
 import com.karoliinamultas.parliamentmembersproject.R
 
 
-class MemberRecyclerViewAdapter(private val context: Context, var members: LiveData<List<String>>) :
+class MemberRecyclerViewAdapter(private val context: Context, var members: List<String>) :
     ListAdapter<String, MemberViewHolder>(MemberDiffCallback()) {
 
     override fun getItemCount(): Int {
-        return members.value?.size ?: 0
+        return members.size
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemberViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.text_item_view, parent, false)
@@ -28,9 +28,9 @@ class MemberRecyclerViewAdapter(private val context: Context, var members: LiveD
 
     override fun onBindViewHolder(holder: MemberViewHolder, position: Int) {
         (holder.itemView as TextView).apply {
-            text = members.value?.get(position) ?: "empty"
+            text = members.get(position)
             setOnClickListener {
-                val action = MembersOfPartyFragmentDirections.actionMembersOfPartyFragmentToMemberPage()
+                val action = MembersOfPartyFragmentDirections.actionMembersOfPartyFragmentToMemberPage(holder.itemView.text.toString())
                 it.findNavController().navigate(action)
             }
 
