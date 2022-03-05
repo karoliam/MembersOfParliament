@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.karoliinamultas.parliamentmembersproject.adapters.MemberRecyclerViewAdapter
-import com.karoliinamultas.parliamentmembersproject.viewModels.PoliticianViewModel
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentMembersOfPartyBinding
 import com.karoliinamultas.parliamentmembersproject.viewModels.MembersViewModel
 
@@ -27,24 +26,20 @@ class MembersOfPartyFragment : Fragment() {
             inflater,
             R.layout.fragment_members_of_party, container, false
         )
+        //Safe args
         val args = MembersOfPartyFragmentArgs.fromBundle(requireArguments())
         val partyName = args.partyName
+
+        //ViewModel
         memberViewModel = ViewModelProvider(this).get(MembersViewModel::class.java)
 
-
-
-        println(partyName)
-        println("HELLO HERE")
+        //Adding MP names to recyclerview
         memberViewModel.members.observe(viewLifecycleOwner, Observer {
         adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.extractParties(it, partyName))
             binding.membersList.adapter = adapter
         })
         binding.membersList.layoutManager = LinearLayoutManager(activity)
-//        binding.membersList.adapter =
-//            activity?.let {
-//                MemberRecyclerViewAdapter(it,
-//                    memberViewModel.extractParties(it, partyName))
-//            }
+
 
 
         return binding.root

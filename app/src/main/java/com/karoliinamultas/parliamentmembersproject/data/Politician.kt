@@ -22,5 +22,22 @@ import androidx.room.PrimaryKey
 data class PComment (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
-    val comment: String
+    val comment: String,
+    val personNumber: Int
+)
+
+@Entity(tableName = "thumbsUp")
+data class ThumbsUp (
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val thumbUp: Int,
+    val personNumber: Int
+    )
+
+@Entity(tableName = "thumbsDown")
+data class ThumbsDown (
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val thumbDown: Int,
+    val personNumber: Int
 )

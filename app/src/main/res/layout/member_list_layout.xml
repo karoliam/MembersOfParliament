@@ -4,8 +4,10 @@
     <TextView
         android:id="@+id/member_name"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="80dp"
+        android:fontFamily="@font/open_sans"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:textColor="#009688"
         android:textSize="24sp" />
 </layout>

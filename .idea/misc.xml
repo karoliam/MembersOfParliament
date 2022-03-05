@@ -8,7 +8,13 @@
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/fragment_parties.xml" value="0.22" />
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/fragment_start_screen.xml" value="0.22" />
         <entry key="..\:/Users/kmult/AndroidStudioProjects/ParliamentMembersProject/app/src/main/res/layout/text_item_view.xml" value="0.26458333333333334" />
-        <entry key="app/src/main/res/layout/fragment_member_page.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/font/open_sans.xml" value="0.41822916666666665" />
+        <entry key="app/src/main/res/layout/fragment_member_page.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_members_of_party.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_parties.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/fragment_start_screen.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/member_list_layout.xml" value="0.2776268115942029" />
+        <entry key="app/src/main/res/layout/text_item_view.xml" value="0.2776268115942029" />
       </map>
     </option>
   </component>

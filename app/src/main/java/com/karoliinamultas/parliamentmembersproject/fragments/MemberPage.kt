@@ -1,6 +1,5 @@
 package com.karoliinamultas.parliamentmembersproject.fragments
 
-import android.media.Image
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,18 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.karoliinamultas.parliamentmembersproject.MembersOfPartyFragmentArgs
 import com.karoliinamultas.parliamentmembersproject.R
-import com.karoliinamultas.parliamentmembersproject.data.*
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentMemberPageBinding
 import com.karoliinamultas.parliamentmembersproject.viewModels.ImageViewModel
 import com.karoliinamultas.parliamentmembersproject.viewModels.MemberPageViewModel
-import com.karoliinamultas.parliamentmembersproject.viewModels.MembersViewModel
-import kotlinx.coroutines.*
-import kotlin.reflect.jvm.internal.impl.renderer.ClassifierNamePolicy
 
 class MemberPage : Fragment() {
-    private lateinit var commentList: MutableList<String>
     private lateinit var memberPageViewModel: MemberPageViewModel
     private lateinit var imageViewModel: ImageViewModel
     override fun onCreateView(
@@ -42,64 +35,46 @@ class MemberPage : Fragment() {
         val memberName = args.memberName
 
         binding.nameText.text = memberName
+
         memberPageViewModel.members.observe(viewLifecycleOwner, Observer {
+            //Assigning text for title of info page and getting personNumber
             binding.infoText.text = memberPageViewModel.extractInfo(it, memberName)
+            val personNumber = memberPageViewModel.extractPersonNumber(it, memberName)
+            //Assigning comment to comment field
+            memberPageViewModel.comments.observe(viewLifecycleOwner, Observer {
+                binding.comment.text = memberPageViewModel.extractComment(it, personNumber)
+            })
+            //Save-button
+            binding.button.setOnClickListener{
+                memberPageViewModel.addComment(binding.userInput.text.toString(), personNumber)
+                Toast.makeText(requireContext(), "Comment saved!", Toast.LENGTH_SHORT).show()
+            }
+            //Thumb up-button
+            binding.thumbUpButton.setOnClickListener{
+                memberPageViewModel.addThumbsUp(1,personNumber)
+            }
+            memberPageViewModel.thumbsUp.observe(viewLifecycleOwner, Observer {
+                binding.upCountText.text = memberPageViewModel.extractThumbsUp(it,personNumber).sum().toString()
+            })
+            //Thumb down-button
+            binding.thumbDownButton.setOnClickListener {
+                memberPageViewModel.addThumbsDown(1,personNumber)
+            }
+            memberPageViewModel.thumbsDown.observe(viewLifecycleOwner, Observer {
+                binding.downCountText.text = memberPageViewModel.extractThumbsDown(it, personNumber).sum().toString()
+            })
 
 
         })
-        //User input
-
-        binding.button.setOnClickListener{
-            val userInput = binding.userInput.text.toString()
-            binding.comment.text = userInput
-            Toast.makeText(requireContext(), "Comment saved!", Toast.LENGTH_SHORT).show()
-        }
+        //Image
         imageViewModel.pictureUrl.observe(viewLifecycleOwner, Observer {
             val pictureUrl = imageViewModel.extractPictureUrl(it, memberName)
             println(pictureUrl)
             Glide.with(this).load("https://avoindata.eduskunta.fi/${pictureUrl}").into(binding.imageView)
-
         })
 
 
 
-
-
-
-        //Image
-
-//
-//        commentList = mutableListOf()
-//        val userInput = binding.userInput.text.toString()
-//
-//
-//
-
-
-                //kysy apua
-//        fun addComment() {
-//            GlobalScope.launch(
-//                Dispatchers.IO,
-//                CoroutineStart.DEFAULT
-//            ) {
-//                try {
-//                    commentList.forEach {
-//                        PoliticianDB.getDatabase(requireContext()).politicianDao()
-//                            .addComment(it)
-//                    }
-//                }
-//             catch (e: Exception) {
-//                println("Failure: ${e.message}")
-//            }
-//
-//        }
-//
-//    }
-//        binding.button.setOnClickListener {
-//            commentList.add(userInput)
-//            addComment()
-//            Toast.makeText(requireContext(), "Comment saved!", Toast.LENGTH_SHORT).show()
-//        }
         return binding.root
     }
 

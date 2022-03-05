@@ -28,10 +28,12 @@ class PartiesFragment : Fragment() {
             inflater,
             R.layout.fragment_parties, container, false
         )
+        //ViewModel
         partyViewModel = ViewModelProvider(this).get(PartyViewModel::class.java)
+
         adapter = PartyRecyclerViewAdapter(requireContext(), partyViewModel.parties)
 
-
+        //Adding party names to recyclerview
         partyViewModel.parties.observe(viewLifecycleOwner, Observer {
             (binding.partyList.adapter as PartyRecyclerViewAdapter).notifyDataSetChanged()
         })

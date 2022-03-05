@@ -13,36 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.karoliinamultas.parliamentmembersproject.R
 import com.karoliinamultas.parliamentmembersproject.fragments.PartiesFragmentDirections
 
-//
-//class PartyRecyclerViewAdapter() : RecyclerView.Adapter<TextItemViewHolder>() {
-//
-//    val viewModel = PartyViewModel(Application())
-//    val parties = viewModel.parties
-//
-//
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TextItemViewHolder {
-//        val layoutInflater = LayoutInflater.from(parent.context)
-//        val view = layoutInflater
-//            .inflate(R.layout.text_item_view, parent, false) as TextView
-//        return TextItemViewHolder(view)
-//    }
-//
-//
-//    override fun onBindViewHolder(holder: TextItemViewHolder, position: Int) {
-//        (holder.itemView as TextView).apply {
-//            text = parties.value?.get(position) ?: "empty"
-//            setOnClickListener {
-//                val action =
-//                    PartiesFragmentDirections.actionPartiesFragmentToMembersOfPartyFragment()
-//                it.findNavController().navigate(action)
-//            }
-//        }
-//    }
-//    override fun getItemCount(): Int {
-//        return parties.value?.size ?: 0
-//    }
-//}
 
 class PartyRecyclerViewAdapter(private val context: Context, var parties: LiveData<List<String>>) :
     ListAdapter<String, PartyViewHolder>(PartyDiffCallback()) {

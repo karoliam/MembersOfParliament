@@ -3,7 +3,6 @@ package com.karoliinamultas.parliamentmembersproject.viewModels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.karoliinamultas.parliamentmembersproject.data.Politician
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianDB
 import com.karoliinamultas.parliamentmembersproject.data.PoliticianRepository

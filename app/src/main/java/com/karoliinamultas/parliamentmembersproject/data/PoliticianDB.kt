@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Politician::class, PComment::class], version = 2, exportSchema = false)
+@Database(entities = [Politician::class, PComment::class, ThumbsUp::class, ThumbsDown::class], version = 2, exportSchema = false)
 abstract class PoliticianDB: RoomDatabase() {
 
     abstract fun politicianDao(): PoliticianDao
@@ -15,7 +15,7 @@ abstract class PoliticianDB: RoomDatabase() {
         @Volatile
         private var INSTANCE: PoliticianDB? = null
 
-        fun getDatabase(context: Context): PoliticianDB {
+        fun getDatabase(context: Context = MyApp.appContext): PoliticianDB {
             val tempInstance = INSTANCE
             if(tempInstance != null) {
                 return tempInstance
