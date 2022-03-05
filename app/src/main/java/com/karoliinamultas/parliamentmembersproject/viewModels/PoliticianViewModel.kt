@@ -1,10 +1,11 @@
-package com.karoliinamultas.parliamentmembersproject.data
+package com.karoliinamultas.parliamentmembersproject.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-
+import com.karoliinamultas.parliamentmembersproject.data.Politician
+import com.karoliinamultas.parliamentmembersproject.data.PoliticianDB
+import com.karoliinamultas.parliamentmembersproject.data.PoliticianRepository
 
 
 class PoliticianViewModel(application: Application): AndroidViewModel(application) {
@@ -17,7 +18,7 @@ class PoliticianViewModel(application: Application): AndroidViewModel(applicatio
     init {
         val politicianDao = PoliticianDB.getDatabase(application).politicianDao()
         repository = PoliticianRepository(politicianDao)
-        readAllData = repository.readAllData
+        readAllData = repository.allData
     }
 
     val politicians = readAllData

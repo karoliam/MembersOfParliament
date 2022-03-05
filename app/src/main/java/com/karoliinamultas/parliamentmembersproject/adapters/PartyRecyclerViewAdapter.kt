@@ -1,8 +1,6 @@
-package com.karoliinamultas.parliamentmembersproject
+package com.karoliinamultas.parliamentmembersproject.adapters
 
-import android.app.Application
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +10,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.karoliinamultas.parliamentmembersproject.data.Politician
-import com.karoliinamultas.parliamentmembersproject.data.PoliticianApi
-import com.karoliinamultas.parliamentmembersproject.data.PoliticianDB
-import com.karoliinamultas.parliamentmembersproject.data.PoliticianRepository
-import kotlinx.coroutines.CoroutineStart
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.lang.StringBuilder
+import com.karoliinamultas.parliamentmembersproject.R
+import com.karoliinamultas.parliamentmembersproject.fragments.PartiesFragmentDirections
 
 //
 //class PartyRecyclerViewAdapter() : RecyclerView.Adapter<TextItemViewHolder>() {
@@ -69,7 +60,7 @@ class PartyRecyclerViewAdapter(private val context: Context, var parties: LiveDa
         (holder.itemView as TextView).apply {
         text = parties.value?.get(position) ?: "empty"
         setOnClickListener {
-            val action = PartiesFragmentDirections.actionPartiesFragmentToMembersOfPartyFragment()
+            val action = PartiesFragmentDirections.actionPartiesFragmentToMembersOfPartyFragment((holder.itemView.text.toString()))
             it.findNavController().navigate(action)
         }
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startScreen"
-        android:name="com.karoliinamultas.parliamentmembersproject.StartScreen"
+        android:name="com.karoliinamultas.parliamentmembersproject.fragments.StartScreen"
         android:label="StartScreen" >
         <action
             android:id="@+id/action_startScreen_to_partiesFragment"
@@ -15,9 +15,8 @@
     </fragment>
     <fragment
         android:id="@+id/partiesFragment"
-        android:name="com.karoliinamultas.parliamentmembersproject.PartiesFragment"
-        android:label="fragment_parties"
-        tools:layout="@layout/fragment_parties" >
+        android:name="com.karoliinamultas.parliamentmembersproject.fragments.PartiesFragment"
+        android:label="fragment_parties">
         <action
             android:id="@+id/action_partiesFragment_to_membersOfPartyFragment"
             app:destination="@id/membersOfPartyFragment"
@@ -34,10 +33,13 @@
             app:destination="@id/memberPage"
             app:popUpTo="@id/membersOfPartyFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="partyName"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/memberPage"
-        android:name="com.karoliinamultas.parliamentmembersproject.MemberPage"
+        android:name="com.karoliinamultas.parliamentmembersproject.fragments.MemberPage"
         android:label="MemberPage" >
         <action
             android:id="@+id/action_memberPage_to_membersOfPartyFragment"

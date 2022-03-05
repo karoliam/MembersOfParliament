@@ -1,4 +1,4 @@
-package com.karoliinamultas.parliamentmembersproject
+package com.karoliinamultas.parliamentmembersproject.adapters
 //
 //import android.view.LayoutInflater
 //import android.view.ViewGroup

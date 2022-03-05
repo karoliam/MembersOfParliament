@@ -1,4 +1,4 @@
-package com.karoliinamultas.parliamentmembersproject
+package com.karoliinamultas.parliamentmembersproject.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,8 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.karoliinamultas.parliamentmembersproject.data.Politician
+import com.karoliinamultas.parliamentmembersproject.adapters.PartyRecyclerViewAdapter
+import com.karoliinamultas.parliamentmembersproject.R
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentPartiesBinding
+import com.karoliinamultas.parliamentmembersproject.viewModels.PartyViewModel
 
 
 class PartiesFragment : Fragment() {
@@ -29,6 +31,7 @@ class PartiesFragment : Fragment() {
         partyViewModel = ViewModelProvider(this).get(PartyViewModel::class.java)
         adapter = PartyRecyclerViewAdapter(requireContext(), partyViewModel.parties)
 
+
         partyViewModel.parties.observe(viewLifecycleOwner, Observer {
             (binding.partyList.adapter as PartyRecyclerViewAdapter).notifyDataSetChanged()
         })
@@ -38,6 +41,7 @@ class PartiesFragment : Fragment() {
                 PartyRecyclerViewAdapter(it,
                 partyViewModel.parties)
             }
+
         return binding.root
 
     }

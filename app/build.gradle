@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -33,6 +34,9 @@ android {
     }
     buildFeatures {
         dataBinding true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -67,6 +71,9 @@ dependencies {
 
     //cardview
     implementation "androidx.cardview:cardview:1.0.0"
+    //hilt
+    implementation"com.google.dagger:hilt-android:2.38.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.38.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

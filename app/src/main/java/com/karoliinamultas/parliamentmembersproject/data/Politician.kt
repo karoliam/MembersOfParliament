@@ -17,3 +17,10 @@ import androidx.room.PrimaryKey
         val bornYear: Int,
         val constituency: String
     )
+
+@Entity(tableName = "comment")
+data class PComment (
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val comment: String
+)

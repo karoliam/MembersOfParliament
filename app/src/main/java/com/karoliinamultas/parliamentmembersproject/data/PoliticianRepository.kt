@@ -5,9 +5,8 @@ import androidx.lifecycle.LiveData
 
 class PoliticianRepository(private val politicianDao: PoliticianDao) {
 
-    val readAllData: LiveData<List<Politician>> = politicianDao.readAllData()
+    val allData: LiveData<List<Politician>> = politicianDao.readAllData()
+    val allComments: LiveData<List<PComment>> = politicianDao.readAllComments()
 
-    suspend fun addPolitician(politician: Politician) {
-        politicianDao.addPolitician(politician)
     }
-}
+
