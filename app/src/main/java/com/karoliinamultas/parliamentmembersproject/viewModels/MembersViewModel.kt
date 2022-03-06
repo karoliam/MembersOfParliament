@@ -17,8 +17,7 @@ class MembersViewModel(application: Application): AndroidViewModel(application) 
     private val repository = PoliticianRepository(PoliticianDB.getDatabase(getApplication()).politicianDao())
     val members: LiveData<List<Politician>> = repository.allData
 
-
-    fun extractParties(memberList: List<Politician>, partyName: String): List<String> {
+    fun extractMembers(memberList: List<Politician>, partyName: String): List<String> {
         return memberList.filter { it.party == partyName }.map { it.first + " " + it.last}
     }
 }

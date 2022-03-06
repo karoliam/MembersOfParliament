@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.karoliinamultas.parliamentmembersproject.R
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentStartScreenBinding
 
@@ -24,7 +25,11 @@ class StartScreen : Fragment() {
             inflater,
             R.layout.fragment_start_screen, container, false
         )
-
+            binding.partyButton.setOnClickListener{
+            val action =
+                StartScreenDirections.actionStartScreenToPartiesFragment()
+            findNavController().navigate(action)
+        }
 
         return binding.root
     }

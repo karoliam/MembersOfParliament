@@ -18,7 +18,6 @@ import com.karoliinamultas.parliamentmembersproject.adapters.MemberRecyclerViewA
 import com.karoliinamultas.parliamentmembersproject.databinding.FragmentMembersOfPartyBinding
 import com.karoliinamultas.parliamentmembersproject.viewModels.MembersViewModel
 
-
 class MembersOfPartyFragment : Fragment() {
     private lateinit var memberViewModel: MembersViewModel
     private lateinit var adapter: MemberRecyclerViewAdapter
@@ -39,9 +38,10 @@ class MembersOfPartyFragment : Fragment() {
 
         memberViewModel = ViewModelProvider(this).get(MembersViewModel::class.java)
 
+
         //Adding MP names to recyclerview
         memberViewModel.members.observe(viewLifecycleOwner, Observer {
-            adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.extractParties(it, partyName))
+            adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.extractMembers(it, partyName))
             binding.membersList.adapter = adapter
         })
         binding.membersList.layoutManager = LinearLayoutManager(activity)

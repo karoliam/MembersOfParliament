@@ -11,7 +11,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.karoliinamultas.parliamentmembersproject.data.*
 
-
 class PartyViewModel(application: Application): AndroidViewModel(application) {
 
     private val repository = PoliticianRepository(PoliticianDB.getDatabase(getApplication()).politicianDao())
