@@ -1,5 +1,10 @@
 package com.karoliinamultas.parliamentmembersproject
 
+//date: 6.3.2022
+//name: Karoliina Multas
+//student id: 2101425
+//MembersFragment is displaying the members of selected party in a recycler view
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,23 +31,21 @@ class MembersOfPartyFragment : Fragment() {
             inflater,
             R.layout.fragment_members_of_party, container, false
         )
+        (activity as MainActivity).actionBar?.title = "Members of Parliament"
+
         //Safe args
         val args = MembersOfPartyFragmentArgs.fromBundle(requireArguments())
         val partyName = args.partyName
 
-        //ViewModel
         memberViewModel = ViewModelProvider(this).get(MembersViewModel::class.java)
 
         //Adding MP names to recyclerview
         memberViewModel.members.observe(viewLifecycleOwner, Observer {
-        adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.extractParties(it, partyName))
+            adapter = MemberRecyclerViewAdapter(requireContext(), memberViewModel.extractParties(it, partyName))
             binding.membersList.adapter = adapter
         })
         binding.membersList.layoutManager = LinearLayoutManager(activity)
 
-
-
         return binding.root
     }
-
 }

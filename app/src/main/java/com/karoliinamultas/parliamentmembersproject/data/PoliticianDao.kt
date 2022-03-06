@@ -1,5 +1,10 @@
 package com.karoliinamultas.parliamentmembersproject.data
 
+//date: 6.3.2022
+//name: Karoliina Multas
+//student id: 2101425
+//Dao for inserts and queries to and from the database.
+
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,5 +1,10 @@
 package com.karoliinamultas.parliamentmembersproject.adapters
 
+//date: 6.3.2022
+//name: Karoliina Multas
+//student id: 2101425
+//RecyclerView adapter for the recyclerview in PartiesFragment. It's setting names of the parties into the recyclerview.
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -20,24 +25,23 @@ class PartyRecyclerViewAdapter(private val context: Context, var parties: LiveDa
     override fun getItemCount(): Int {
         return parties.value?.size ?: 0
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartyViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.text_item_view, parent, false)
         return PartyViewHolder(itemView)
-
     }
 
     override fun onBindViewHolder(holder: PartyViewHolder, position: Int) {
         (holder.itemView as TextView).apply {
-        text = parties.value?.get(position) ?: "empty"
-        setOnClickListener {
-            val action = PartiesFragmentDirections.actionPartiesFragmentToMembersOfPartyFragment((holder.itemView.text.toString()))
-            it.findNavController().navigate(action)
-        }
-
+            text = parties.value?.get(position) ?: "empty"
+            setOnClickListener {
+                val action = PartiesFragmentDirections.actionPartiesFragmentToMembersOfPartyFragment((holder.itemView.text.toString()))
+                it.findNavController().navigate(action)
+            }
         }
     }
-
 }
+
 
 class PartyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 

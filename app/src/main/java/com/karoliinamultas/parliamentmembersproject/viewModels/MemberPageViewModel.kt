@@ -1,5 +1,11 @@
 package com.karoliinamultas.parliamentmembersproject.viewModels
 
+//date: 6.3.2022
+//name: Karoliina Multas
+//student id: 2101425
+//ViewModel for MemberPage. It's extracting data for the infoview and also fetching the data of personNumber, comments, thumbs up and
+// thumbs down for a clicked member. It also handles the adding thumbs down, thumbs up and comment.
+
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -9,6 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MemberPageViewModel(application: Application): AndroidViewModel(application) {
+
     private val repository =
         PoliticianRepository(PoliticianDB.getDatabase(getApplication()).politicianDao())
     val members: LiveData<List<Politician>> = repository.allData
@@ -21,6 +28,7 @@ class MemberPageViewModel(application: Application): AndroidViewModel(applicatio
                     "\nConstituency: " + it.constituency + "\nTwitter: " + if(it.twitter=="") "No twitter!" else it.twitter
         }
     }
+
     fun extractPersonNumber(memberList: List<Politician>, memberName: String): Int {
         return memberList.filter{it.first + " " + it.last == memberName}.map { it.personNumber }.joinToString(" ").toInt()
     }
@@ -30,6 +38,7 @@ class MemberPageViewModel(application: Application): AndroidViewModel(applicatio
             repository.addComment(comment, personNumber)
         }
     }
+
     val comments = repository.allComments
     val thumbsUp = repository.allThumbsUp
     val thumbsDown = repository.allThumbsDown
@@ -59,6 +68,4 @@ class MemberPageViewModel(application: Application): AndroidViewModel(applicatio
             repository.addThumbsDown(thumbsDown, personNumber)
         }
     }
-
-
 }

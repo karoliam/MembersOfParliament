@@ -1,4 +1,8 @@
 package com.karoliinamultas.parliamentmembersproject.data
+//date: 6.3.2022
+//name: Karoliina Multas
+//student id: 2101425
+//network class for API
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

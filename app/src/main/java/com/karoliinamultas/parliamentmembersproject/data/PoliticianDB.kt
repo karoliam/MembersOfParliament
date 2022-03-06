@@ -1,5 +1,10 @@
 package com.karoliinamultas.parliamentmembersproject.data
 
+//date: 6.3.2022
+//name: Karoliina Multas
+//student id: 2101425
+//Database class for creating the database
+
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
@@ -31,5 +36,4 @@ abstract class PoliticianDB: RoomDatabase() {
             }
         }
     }
-
 }
