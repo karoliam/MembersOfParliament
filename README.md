@@ -1,4 +1,4 @@
-# ParliamentMembersProject
+# Members of Parliament
 
 Members of Parliament was a school project, and the goal was to fetch data from an API and use the Room database.
 The task was to fetch the parties' names, the members of parliament and display a detail page of each member with a comment box and like/dislike buttons.
